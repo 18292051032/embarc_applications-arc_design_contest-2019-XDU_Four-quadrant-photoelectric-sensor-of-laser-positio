@@ -1,6 +1,5 @@
-# embarc_applications-arc_design_contest-2019-XDU_Four-quadrant-photoelectric-sensor-of-laser-positio
-# Auto-following Suitcase Application
-This application is designed to show how to develop an **Auto-following Suitcase** using embARC.A person holding a tag in hand,three ultra-wideband anchors should be installed inside the suitcase in an equilateral triangular shape with a side length of 20cm. The distance information measured by the UWB module is transmitted to EMSK through UART.Based on the principle of three-point positioning,the azimuth between the person and the suitcase can be obtained to achieve following.This suitcase can also monitor ambient temperature and air conditions.When the distance between the trunk and the owner exceed the preset ,the trunk will stop automatically,and then sound the alarm or call the mobile phone, so you don't have to worry about losing the trunk.This design is mainly suitable for flat and open indoor applications such as airport waiting halls.
+# Four-quadrant photoelectric sensor of laser positioning
+This application is designed to show how to develop a new **Four-quadrant photoelectric sensor of laser positioning** using embARC. The design of the new structure consists of a ingenious combination of four silicon photoelectric semiconductors and a three-dimensional cross-gap structure. The whole positioning process is that the sensor converts the optical signal of the 532 nm laser into a photo-voltage output signal, and controls the laser to move to the center line of the two quadrants of the sensor through a difference algorithm, which is to verify the function of the new four-quadrant sensor.This design is mainly suitable for finding the energy center of the Gaussian laser spot, and the laser automatically follows the target.
 
 * [Introduction](#introduction)
 	* [Function](#function)
@@ -15,7 +14,7 @@ This application is designed to show how to develop an **Auto-following Suitcase
 * [DemoVideo](#demovideo)
 
 ## Introduction
-**Smart Auto-following Suitcase**
+**A new four-quadrant photoelectric sensor of laser positioning**
 
 ### Function
 
