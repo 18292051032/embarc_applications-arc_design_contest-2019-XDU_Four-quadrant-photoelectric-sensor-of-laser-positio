@@ -29,7 +29,7 @@ This application is designed to show how to develop a new **Four-quadrant photoe
 
 ### System Architecture
 
-![image](https://github.come/18292051032/embarc_applications-arc_design_contest-2019-XDU_Four-quadrant-photoelectric-sensor-of-laser-positio/project-picture/Positioning-system-schematic.png)
+![image](https://github.come/18292051032embarc_applications-arc_design_contest-2019-XDU_Four-quadrant-photoelectric-sensor-of-laser-positio/Project-picture/Positioning-system-schematic.png)
 
 ## Hardware and Software Setup
 ### Required Hardware
