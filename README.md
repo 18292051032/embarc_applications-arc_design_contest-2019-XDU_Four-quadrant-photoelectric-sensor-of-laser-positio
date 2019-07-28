@@ -29,7 +29,7 @@ This application is designed to show how to develop a new **Four-quadrant photoe
 
 ### System Architecture
 
-![image](https://github.com/Mandywualmighty/Auto-following-Suitcase-Application/blob/master/doc/screenshots/System%20architecture.png  "System architecture")
+![image](https://github.come/18292051032/mbarc_applications-arc_design_contest-2019-XDU_Four-quadrant-photoelectric-sensor-of-laser-positio/project picture/Positioning system schematic.png)
 
 ## Hardware and Software Setup
 ### Required Hardware
