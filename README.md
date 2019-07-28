@@ -47,7 +47,7 @@ This application is designed to show how to develop a new **Four-quadrant photoe
 
 The list of hardware is shown in the picture following. 
 
-![image](https://github.come/18292051032/mbarc_applications-arc_design_contest/2019/XDU_Four-quadrant-photoelectric-sensor-of-laser-positio/project picture/Positioning-system-schematic.png)
+![image](https://github.come/18292051032/mbarc_applications-arc_design_contest-2019-XDU_Four-quadrant-photoelectric-sensor-of-laser-positio/project picture/Positioning-system-schematic.png)
 
 The four-quadrant photoelectric sensor is made by ourselves and the physical picture are shown below.
 
