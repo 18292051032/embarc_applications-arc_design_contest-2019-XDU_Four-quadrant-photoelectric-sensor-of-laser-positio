@@ -18,21 +18,13 @@ This application is designed to show how to develop a new **Four-quadrant photoe
 
 ### Function
 
-- **Ambient temperature and air condition monitoring**
+- **Laser spot positioning of any two quadrant center line**
 
-![image](https://github.com/Mandywualmighty/Auto-following-Suitcase-Application/blob/master/doc/screenshots/Temperature%20and%20PM2.5%20monitoring.png   "Temperature and PM2.5 monitoring" )
 
-- **obstacle avoiding**
+- **Convert the optical signal of the 532 nm laser into a photo-voltage signal**
 
-![image](https://github.com/Mandywualmighty/Auto-following-Suitcase-Application/blob/master/doc/screenshots/obstacle%20avoiding.gif   "obstacle avoiding")
 
-- **Auto-following** 
-
-![image](https://github.com/Mandywualmighty/Auto-following-Suitcase-Application/blob/master/doc/screenshots/Auto%20following.gif "Auto-following")
-
-- **Auto-alarm** (The device will sound the alarm when the distance between one and suitcase is longer than 4 meters, and call the mobile phone when it is longer than 5.5 meters)
-
-![image](https://github.com/Mandywualmighty/Auto-following-Suitcase-Application/blob/master/doc/screenshots/Auto-alarm.gif)
+- **Solve the inconsistency of each quadrant parameter brought by the photoelectric semiconductor process** 
 
 
 ### System Architecture
@@ -42,19 +34,22 @@ This application is designed to show how to develop a new **Four-quadrant photoe
 ## Hardware and Software Setup
 ### Required Hardware
 - 1 DesignWare ARC EM Starter Kit(EMSK)
-- 1 Digilent PMOD TMP2
-- 1 Dust Sensor(ZPH01)
-- 1 Display Screen(OLED)
-- 1 Buzzer
-- 1 GPRS Module(SIM900A)
-- 2 Motor Driver Module(TB6612FNG)
-- 4 Positioning Module(DWM1000)
-- 4 Wheel
-- 4 Motor
-- 1 SD Card
-- 3 Ultrasonic Sensor(HCSR04)
+- 1 Four-quadrant photoelectric sensor(Homemade)
+- 1 Motor
+- 1 Screw slider(CBX1610X-500)
+- 1 Motor Driver Module(M6600)
+- 1 Laser(532 nm)
+- 1 AD sampling module(PCF8591)
+- 1 PC
+- 3 DC-DC boost module
+- 1 DC-DC buck module
+- 3 MOS field effect transistor(IRFP250N)
 
 The list of hardware is shown in the picture following. 
+
+![image](https://github.com/Mandywualmighty/Auto-following-Suitcase-Application/blob/master/doc/screenshots/hardware.png)
+
+The four-quadrant photoelectric sensor is made by ourselves and the physical picture are shown below.
 
 ![image](https://github.com/Mandywualmighty/Auto-following-Suitcase-Application/blob/master/doc/screenshots/hardware.png)
 
@@ -63,9 +58,12 @@ The list of hardware is shown in the picture following.
 - Serial port terminal, such as putty, tera-term or minicom
 
 ### Hardware Connection
-1. The EMSK implement **Auto-folowing** smart device, it will process the data returned by positioning module and ultrasonic sensor,and send instructions to motor driver module.It can also monitor temperature and dust concentration of air,we can view these data on OLED. 
-   - Connect **Positioning module** to **J1**(Using UART interface), connect **Motor driver module** to **J3** and **J6**,connect **Ultrasonic sensor** to **J1** and **J3**.
-   - Connect **PMOD TMP2** to **J4**(Using IIC interface), connect **ZPH01** to **J5**(Using uart interface),connect **OLED** and **GPRS** to **J2**(Using IIC interface),connect **Buzzer** to **J6**.
+1. The EMSK implement that the center of the laser spot is positioned on the center line of any two quadrants. It will process the photo-voltage output signal, which is converted by the four-quadrant sensor. And display it in real time on the PC and send the command to the motor drive module, in order to achieve motor movement and direction correction. 
+   - Connect four-quadrant photoelectric sensor to AD sampling module, connect AD sampling module to **J2**(Using GPIO interface).
+   - Connect Motor driver module to MOS field effect transistor. Connect MOS field effect transistor to DC-DC boost module. Connect DC-DC boost module to **J3**.The detailed hardware connection picture is shown below.
+   
+![image](https://github.com/Mandywualmighty/Auto-following-Suitcase-Application/blob/master/doc/screenshots/hardware.png)
+ 
 2. Configure your EMSKs with proper core configuration.
 
 ## User Manual
@@ -74,34 +72,17 @@ Download source code of **Auto-following Suitcase** from github.
 
 The hardware resources are allocated as following table.
 
-|  Hardware Resource  |            Function                                           |
-| ------------------- | ------------------------------------------------------------- |
-|  PMOD TMP2          |        Temperature sensor                                     |
-|  ZPH01              |        Dust sensor                                            |
-|  OLED               |        Display screen                                         |
-|  SIM900A            |        Send messages or call                                  |
-|  TB6612FNG          |        Motor driver module                                    |
-|  HCSR04             |        Dust sensor                                            |
-|  OLED               |        Ultrasonic sensor                                      |
-|  DWM1000            |        Positioning module                                     |
+|  Hardware Resource                  |            Function                           |
+| ------------------------------------| ----------------------------------------------|
+|  Four-quadrant photoelectric sensor |        Positioning module                     |
+|  CBX1610X-500                       |        Screw slider module                    |
+|  M6600                              |        Motor driver module                    |
+|  Laser(532nm)                       |        Launch 532nm light source              |
+|  PCF8591                            |        Pass photo-voltage signal              |
+|  DC-DC boost module                 |        Powering the motor drive module        |
+|  DC-DC buck module                  |        Powering the laser                     |
+|  IRFP250N                           |        Providing Pulse signal                 |
 
-- Modify mux.c (/board/emsk/common/emsk_init.c)
-```
-line 107: change 
-	set_pmod_mux(PM1_UR_UART_0 | PM1_LR_SPI_S	\
-				| PM2_I2C_HRI		\
-				| PM3_GPIO_AC		\
-				| PM4_I2C_GPIO_D	\
-				| PM5_UR_SPI_M1 | PM5_LR_GPIO_A	\
-				| PM6_UR_SPI_M0 | PM6_LR_GPIO_A );
- to 
-	set_pmod_mux(mux_regs, PM1_UR_UART_0 | PM1_LR_GPIO_A	\
-				| PM2_I2C_HRI			\
-				| PM3_GPIO_AC			\
-				| PM4_I2C_GPIO_D		\
-				| PM5_UR_GPIO_C | PM5_LR_SPI_M2	\
-				| PM6_UR_GPIO_C | PM6_LR_GPIO_A );
-```
 ### Run This Application
 
 Here take **EMSK2.2 - ARC EM7D** with GNU Toolset for example to show how to run this application.
