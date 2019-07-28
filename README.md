@@ -29,7 +29,7 @@ This application is designed to show how to develop a new **Four-quadrant photoe
 
 ### System Architecture
 
-![image](https://github.com/18292051032/embarc_applications-arc_design_contest-2019-XDU_Four-quadrant-photoelectric-sensor-of-laser-positio/tree/master/project-picture/Positioning-system-schematic.png)
+![image](https://github.com/18292051032/embarc_applications-arc_design_contest-2019-XDU_Four-quadrant-photoelectric-sensor-of-laser-positio/blob/master/project-picture/Positioning-system-schematic.png)
 
 ## Hardware and Software Setup
 ### Required Hardware
@@ -64,7 +64,7 @@ The four-quadrant photoelectric sensor is made by ourselves and the physical pic
    - Connect four-quadrant photoelectric sensor to AD sampling module, connect AD sampling module to **J2**(Using GPIO interface).
    - Connect Motor driver module to MOS field effect transistor. Connect MOS field effect transistor to DC-DC boost module. Connect DC-DC boost module to **J3**.The detailed hardware connection picture is shown below.
    
-![image](https://github.com/18292051032/embarc_applications-arc_design_contest-2019-XDU_Four-quadrant-photoelectric-sensor-of-laser-positio/blob/master/project-picture/Positioning-system-schematic.png)
+![image](https://github.com/18292051032/embarc_applications-arc_design_contest-2019-XDU_Four-quadrant-photoelectric-sensor-of-laser-positio/blob/master/project-picture/Circuit-interconnection-diagram.png)
  
 2. Configure your EMSKs with proper core configuration.
 
