@@ -109,20 +109,6 @@ Here take **EMSK2.2 - ARC EM7D** with GNU Toolset for example to show how to run
 
 See [ embARC Example User Guide][40], **"Options to Hard-Code in the Application Makefile"** for more detailed information about **Makefile Options**.
 
-#### Driver
-
-Placing the drivers' source code in `driver` folder, you can see there are subfolders for ultasonic,GPRS,ZPH01,buzzer and temperature drivers.
-Placing the C source file and header file in the corresponding subfolder.
-
-|  folder/file        |            Function           |
-| ------------------- | ------------------------------|
-|  ultrasonic         |       ultrasonic driver       |
-|  temperature        |       temperature driver      |
-|  GPRS               |       GPRS driver             |
-|  ZPH01              |       ZPH01 driver            |
-|  buzzer             |       buzzer driver           |
-
-
 # DemoVideo
 
 [Link](https://v.youku.com/v_show/id_XNDI4Nzg1MDEwOA==.html?spm=a2h3j.8428770.3416059.1)
